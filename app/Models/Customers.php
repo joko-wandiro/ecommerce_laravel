@@ -31,6 +31,8 @@ class Customers extends Model
         'password',
         'phone',
         'address',
+        'token',
+        'active',
     );
 
     public static function login($email, $password)

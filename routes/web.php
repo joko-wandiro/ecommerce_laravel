@@ -45,13 +45,13 @@ Route::group(['namespace' => 'FrontEnd'], function () {
     Route::get('delivery-info', array('as' => 'deliveryinfo.index', 'uses' => 'DeliveryInfoController@index'));
     Route::get('register', array('as' => 'account.register', 'uses' => 'CustomerController@register'));
     Route::post('register', array('as' => 'account.register', 'uses' => 'CustomerController@do_register'));
+    Route::get('confirm/{token}', array('as' => 'account.confirm', 'uses' => 'CustomerController@confirm'));
     Route::get('login', array('as' => 'account.login', 'uses' => 'CustomerController@login'));
     Route::post('login', array('as' => 'account.login', 'uses' => 'CustomerController@do_login'));
     Route::get('forgot-password', array('as' => 'account.forgot_password', 'uses' => 'CustomerController@forgot_password'));
     Route::post('forgot-password', array('as' => 'account.process_forgot_password', 'uses' => 'CustomerController@process_forgot_password'));
     Route::get('change-password/{token}', array('as' => 'account.change_password', 'uses' => 'CustomerController@change_password'));
     Route::post('change-password/{token}', array('as' => 'account.change_password', 'uses' => 'CustomerController@process_change_password'));
-    Route::post('register', array('as' => 'account.register', 'uses' => 'DeliveryInfoController@register'));
     Route::get('account', array('as' => 'account.dashboard', 'uses' => 'CustomerController@index'));
     Route::get('account/order', array('as' => 'account.order', 'uses' => 'CustomerController@order'));
     Route::get('account/profile', array('as' => 'account.profile', 'uses' => 'CustomerController@profile'));

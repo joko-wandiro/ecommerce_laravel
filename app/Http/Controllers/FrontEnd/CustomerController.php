@@ -74,7 +74,8 @@ class CustomerController extends FrontEndController
         }
         // Authenticate
         $Model = new \App\Models\Customers;
-        $record = $Model->where('email', '=', request('email'))->first();
+        $record = $Model->where('email', '=', request('email'))
+                        ->where('active', '=', 1)->first();
         if (password_verify(request('password'), $record['password'])) {
             // Set session parameters
             $parameters = array(
@@ -133,13 +134,47 @@ class CustomerController extends FrontEndController
         if ($record) {
             return back()->with('register_message', 'Email sudah terdaftar.')->withInput();
         }
+        // Create token
+        $token = getUniqueFilename();
+        $url = action(config('app.frontend_namespace') . 'CustomerController@confirm', array('token' => $token));
         // Insert record
         $Customers = new Customers;
         $parameters = request()->all();
         $parameters['password'] = password_hash($parameters['password'], PASSWORD_DEFAULT);
+        $parameters['token'] = $token;
         $result = $Customers->create($parameters);
         // Send Notification
+        $parameters = array(
+            'url' => $url,
+        );
+        $content = view('frontend.themes.ecommerce.email.register', $parameters)->render();
+        $Mailer = new Mailer;
+        $Mailer->send($result->email, $result->name, 'Akun Baru', $content);
         return back()->with('register_message', 'Email sudah dikirim. Silakan dikonfirmasi.');
+    }
+
+    /**
+     * Process Forgot Password Page
+     * 
+     * @return Illuminate\View\View
+     */
+    public function confirm($token)
+    {
+        // Authenticate
+        $Model = new Customers;
+        $record = $Model->where('token', '=', $token)->get()->first();
+        $url = action(config('app.frontend_namespace') . 'CustomerController@login');
+        if (!$record) {
+            return redirect($url);
+        }
+        // Update token
+        $parameters = array(
+            'active' => '1',
+            'token' => '',
+        );
+        $Model = new Customers;
+        $record = $Model->where('token', '=', $token)->update($parameters);
+        return redirect($url);
     }
 
     /**

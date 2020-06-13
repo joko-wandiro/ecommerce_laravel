@@ -17,8 +17,8 @@ if (Session::has('register_message')) {
 }
 ?>
 <?php
-$url = action(config('app.frontend_namespace') . 'DeliveryInfoController@register');
-echo Form::open(['method' => 'POST', 'url' => $url, 'id' => "form-delivery-info"]);
+$url = action(config('app.frontend_namespace') . 'CustomerController@do_register');
+echo Form::open(['method' => 'POST', 'url' => $url, 'id' => "form-register"]);
 ?>
 <div class="form-group">
     <input type="text" name="name" class="form-control" placeholder="Full Name" value="<?php echo old('name'); ?>" />
