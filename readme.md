@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg" style="vertical-align: top;"> ECommerce</h1>
+<h1 align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg" style="vertical-align: middle;"> ECommerce</h1>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
