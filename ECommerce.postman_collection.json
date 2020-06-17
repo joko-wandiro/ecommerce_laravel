@@ -1,0 +1,335 @@
+{
+	"info": {
+		"_postman_id": "af6e5377-f271-459d-b86f-8597fd3cc784",
+		"name": "ECommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{public}}login?email=joko_wandiro@yahoo.com&password=asdf",
+							"host": [
+								"{{public}}login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "joko_wandiro@yahoo.com"
+								},
+								{
+									"key": "password",
+									"value": "asdf"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{public}}register?name=Joko Wandiro&email=joko_wandiro@yahoo.com&password=asdf&password_confirm=asdf&phone=085775007495&address=Jl. Testing",
+							"host": [
+								"{{public}}register"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Joko Wandiro"
+								},
+								{
+									"key": "email",
+									"value": "joko_wandiro@yahoo.com"
+								},
+								{
+									"key": "password",
+									"value": "asdf"
+								},
+								{
+									"key": "password_confirm",
+									"value": "asdf"
+								},
+								{
+									"key": "phone",
+									"value": "085775007495"
+								},
+								{
+									"key": "address",
+									"value": "Jl. Testing"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{public}}forgot-password?email=joko_wandiro@yahoocom",
+							"host": [
+								"{{public}}forgot-password"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "joko_wandiro@yahoocom"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Account Dashboard",
+			"item": [
+				{
+					"name": "Orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTYsIm5hbWUiOiJKb2tvIFdhbmRpcm8iLCJlbWFpbCI6Impva29fd2FuZGlyb0B5YWhvby5jb20iLCJwaG9uZSI6IjA4NTc3NTAwNzQ5NSIsImFkZHJlc3MiOiJKbC4gVGVzdGluZyJ9.kbAvcfXU4l0_Nap8H04tYb0x2g8e0WK8sVAfRCDZ1Y0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{public}}account/order",
+							"host": [
+								"{{public}}account"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTYsIm5hbWUiOiJKb2tvIFdhbmRpcm8iLCJlbWFpbCI6Impva29fd2FuZGlyb0B5YWhvby5jb20iLCJwaG9uZSI6IjA4NTc3NTAwNzQ5NSIsImFkZHJlc3MiOiJKbC4gVGVzdGluZyJ9.kbAvcfXU4l0_Nap8H04tYb0x2g8e0WK8sVAfRCDZ1Y0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{public}}account/profile?name=Joko Wandiro&password=demo&password_confirm=demo&phone=085775007495&address=Jl. Kp. Rawa Sawah",
+							"host": [
+								"{{public}}account"
+							],
+							"path": [
+								"profile"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Joko Wandiro"
+								},
+								{
+									"key": "password",
+									"value": "demo"
+								},
+								{
+									"key": "password_confirm",
+									"value": "demo"
+								},
+								{
+									"key": "phone",
+									"value": "085775007495"
+								},
+								{
+									"key": "address",
+									"value": "Jl. Kp. Rawa Sawah"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"disabled": true
+								},
+								{
+									"key": "identifier",
+									"value": "customers",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{public}}categories",
+					"host": [
+						"{{public}}categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{public}}category/fried-chicken",
+					"host": [
+						"{{public}}category"
+					],
+					"path": [
+						"fried-chicken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{public}}product/king-deal-ayam-goreng-cheesy",
+					"host": [
+						"{{public}}product"
+					],
+					"path": [
+						"king-deal-ayam-goreng-cheesy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTYsIm5hbWUiOiJKb2tvIFdhbmRpcm8iLCJlbWFpbCI6Impva29fd2FuZGlyb0B5YWhvby5jb20iLCJwaG9uZSI6IjA4NTc3NTAwNzQ5NSIsImFkZHJlc3MiOiJKbC4gVGVzdGluZyJ9.kbAvcfXU4l0_Nap8H04tYb0x2g8e0WK8sVAfRCDZ1Y0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{public}}payment/save?product[1][id]=1&product[1][qty]=1&product[2][id]=2&product[2][qty]=1&note&shipping_address=Jl. Testingan",
+					"host": [
+						"{{public}}payment"
+					],
+					"path": [
+						"save"
+					],
+					"query": [
+						{
+							"key": "product[1][id]",
+							"value": "1"
+						},
+						{
+							"key": "product[1][qty]",
+							"value": "1"
+						},
+						{
+							"key": "product[2][id]",
+							"value": "2"
+						},
+						{
+							"key": "product[2][qty]",
+							"value": "1"
+						},
+						{
+							"key": "note",
+							"value": null
+						},
+						{
+							"key": "shipping_address",
+							"value": "Jl. Testingan"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d473ae82-2743-414d-a673-3390a53bfc29",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "af8f6f2a-03df-4901-a6e9-bb3485ba05e9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "53de9332-034b-4df0-a46e-dab6b4c63425",
+			"key": "local",
+			"value": "http://192.168.1.5/events/public/api",
+			"type": "string"
+		},
+		{
+			"id": "db479ff7-879a-4212-8633-eeb93af79d5c",
+			"key": "public",
+			"value": "http://www.toko.loc/api/",
+			"type": "string"
+		},
+		{
+			"id": "7bdf02ce-a056-414f-9ada-bb72d9034f22",
+			"key": "public_",
+			"value": "http://www.toko.loc/",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

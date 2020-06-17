@@ -14,7 +14,7 @@ class ProductsController extends ApiController
     protected $table = 'products';
 
     /**
-     * Display specific product
+     * Product Page
      *
      * @return Illuminate\View\View
      */
@@ -32,7 +32,7 @@ class ProductsController extends ApiController
     }
 
     /**
-     * Posts Page
+     * Products Category Page
      *
      * @return Illuminate\View\View
      */
@@ -44,7 +44,7 @@ class ProductsController extends ApiController
     }
 
     /**
-     * Posts Page
+     * Index Page
      *
      * @return Illuminate\View\View
      */

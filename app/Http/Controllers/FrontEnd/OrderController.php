@@ -27,14 +27,6 @@ class OrderController extends FrontEndController
     public function index($id_order)
     {
         session()->flush();
-//        dd($id_order);
-//        $delivery_info = session('delivery_info');
-//        $cart = session('cart');
-//        // Get product ids
-//        $ids_product = array();
-//        foreach ($cart as $id_product => $product) {
-//            $ids_product[] = $id_product;
-//        }
         // Get order
         $columns = array(
             'orders.*',

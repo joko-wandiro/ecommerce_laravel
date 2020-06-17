@@ -58,7 +58,7 @@ class CustomerController extends FrontEndController
     }
 
     /**
-     * Register
+     * Do Login
      * 
      * @return Illuminate\View\View
      */
@@ -375,7 +375,7 @@ class CustomerController extends FrontEndController
             )
         );
         array_splice($layout, 3, 0, $password_confirm);
-        unset($layout[1], $layout[6]);
+        unset($layout[1], $layout[6], $layout[7]);
         return $layout;
     }
 

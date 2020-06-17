@@ -44,7 +44,7 @@ if (!function_exists('url_product')) {
     }
 
 }
-        
+
 if (!function_exists('to_number')) {
 
     /**
@@ -226,3 +226,18 @@ if (!function_exists('to_url_component')) {
 
 }
 
+if (!function_exists('jwt_parameters')) {
+
+    /**
+     * Get jwt parameters
+     * 
+     * @return StdClass
+     */
+    function jwt_parameters()
+    {
+        $token = request()->bearerToken();
+        $parameters = Firebase\JWT\JWT::decode($token, config('auth.jwt_key'), array('HS256'));
+        return $parameters;
+    }
+
+}

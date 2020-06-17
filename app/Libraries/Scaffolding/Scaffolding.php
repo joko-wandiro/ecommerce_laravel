@@ -15,6 +15,7 @@ class Scaffolding
 {
 
     protected $type = null;
+    protected $appType = 'web';
     protected $contentType = 'html';
     protected $Route;
     protected $actionName;
@@ -408,6 +409,27 @@ class Scaffolding
     {
         $this->contentType = $value;
         return $this;
+    }
+
+    /**
+     * Set content type
+     *
+     * @param Illuminate\Database\Eloquent\Model $Model
+     */
+    public function setAppType($value)
+    {
+        $this->appType = $value;
+        return $this;
+    }
+
+    /**
+     * Set content type
+     *
+     * @param Illuminate\Database\Eloquent\Model $Model
+     */
+    public function getAppType()
+    {
+        return $this->appType;
     }
 
     /**
@@ -1615,13 +1637,35 @@ class Scaffolding
         $validationMessages = $this->doFilter("updateModifyValidationMessages", $validationMessages);
         $validator = Validator::make($this->Request->all(), $validationRules, $validationMessages);
         if ($validator->fails()) {
-            $Response = back()->withErrors($validator)->withInput();
-            $this->redirect($Response);
+            if ($this->getAppType() == 'api') {
+                $error_messages = $validator->errors()->getMessages();
+                $response = array(
+                    'errors' => $error_messages,
+                    'type' => 'error',
+                );
+                $JsonResponse = new JsonResponse($response, 200);
+                $JsonResponse->send();
+                exit;
+            } else {
+                $error_messages = $validator->errors()->getMessages();
+                $Response = back()->withErrors($validator)->withInput();
+                $this->redirect($Response);
+            }
         }
         // Record is valid
         $Model = $this->isValidRecord();
-        if ($Model instanceof \Illuminate\Http\RedirectResponse) {
-            $this->redirect($Model);
+        if ($this->getAppType() == 'api') {
+            $response = array(
+                'errors' => 'Record is not valid',
+                'type' => 'error',
+            );
+            $JsonResponse = new JsonResponse($response, 200);
+            $JsonResponse->send();
+            exit;
+        } else {
+            if ($Model instanceof \Illuminate\Http\RedirectResponse) {
+                $this->redirect($Model);
+            }
         }
         // Set value for BIT columns
         $this->setValueBitColumns();

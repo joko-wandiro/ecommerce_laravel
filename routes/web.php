@@ -62,8 +62,15 @@ Route::group(['namespace' => 'FrontEnd'], function () {
     Route::get('order/{id_order}', array('as' => 'order.index', 'uses' => 'OrderController@index'));
 });
 Route::group(['prefix' => 'api', 'namespace' => 'Api'], function () {
-//    Route::get('/events/{event}', array('as' => 'events.view', 'uses' => 'EventsController@event'));
     Route::get('categories', array('as' => 'categories.index', 'uses' => 'CategoriesController@index'));
     Route::get('category/{category}', array('as' => 'products.index', 'uses' => 'ProductsController@products_category'));
     Route::get('product/{product}', array('as' => 'products.view', 'uses' => 'ProductsController@product'));
+    Route::post('login', array('as' => 'account.login', 'uses' => 'CustomerController@do_login'));
+    Route::post('register', array('as' => 'account.register', 'uses' => 'CustomerController@do_register'));
+    Route::post('forgot-password', array('as' => 'account.forgot_password', 'uses' => 'CustomerController@do_forgot_password'));
+    Route::get('account/order', array('as' => 'account.order', 'uses' => 'CustomerController@order'))->middleware('api.auth');
+    Route::put('account/profile', array('as' => 'account.profile', 'uses' => 'CustomerController@profile'))->middleware('api.auth');
+    Route::post('cart/add', array('as' => 'cart.add', 'uses' => 'CartController@add'));
+    Route::post('payment/save', array('as' => 'payment.save', 'uses' => 'PaymentController@save'));
+    Route::get('order/{id_order}', array('as' => 'order.index', 'uses' => 'OrderController@index'));
 });

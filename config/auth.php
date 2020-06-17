@@ -98,5 +98,6 @@ return [
             'expire' => 60,
         ],
     ],
+    'jwt_key'=>'dy5DHUn6z',
 
 ];
