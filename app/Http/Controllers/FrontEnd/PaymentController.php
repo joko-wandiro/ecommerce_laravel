@@ -89,13 +89,14 @@ class PaymentController extends FrontEndController
                     $ppn = $total_delivery * 10 / 100;
                     $grand_total = $total_delivery + $ppn;
                     // Insert order
+                    $address = request('shipping_address') ? request('shipping_address') : session('address');
                     $parameters = array(
                         'id_customer' => session('id'),
                         'subtotal' => $total,
                         'delivery_fee' => $total_delivery,
                         'ppn' => $ppn,
                         'total' => $grand_total,
-                        'shipping_address' => request('shipping_address'),
+                        'shipping_address' => $address,
                     );
 //                    dd($parameters);
                     $Orders = new Orders;
